@@ -1,0 +1,214 @@
+# depslib dependency file v1.0
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\club.cpp
+	"Club.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\club.h
+	<string>
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\colapuntosfecha.cpp
+	"ColaPuntosFecha.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\colapuntosfecha.h
+	"PuntosFecha.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\puntosfecha.h
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\equipo.cpp
+	"Equipo.h"
+	<string>
+	"ListaEquipos.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\equipo.h
+	<string>
+	"ListaJugadores.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listajugadores.h
+	"Jugador.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\jugador.h
+	<string>
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listaequipos.h
+	"Equipo.h"
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\jugador.cpp
+	<string>
+	"Jugador.h"
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listaclubes.cpp
+	"ListaClubes.h"
+
+1497939144 c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listaclubes.h
+	"Club.h"
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listaequipos.cpp
+	"ListaEquipos.h"
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\listajugadores.cpp
+	"ListaJugadores.h"
+
+1497939144 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\puntosfecha.cpp
+	"PuntosFecha.h"
+
+1498003300 source:c:\users\juampi\desktop\facultad\algoritmos y estructuras de datos\juan pablo federico - ayed\2017\grandt\main.cpp
+	<wchar.h>
+	<locale.h>
+	<cstdlib>
+	<iostream>
+	<string>
+	<sstream>
+	"stdio.h"
+	"string.h"
+	"conio.h"
+	"windows.h"
+	"Club.h"
+	"ListaClubes.h"
+	"Jugador.h"
+	"ListaJugadores.h"
+	"Equipo.h"
+	"ListaEquipos.h"
+	"ColaPuntosFecha.h"
+	"PuntosFecha.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\club.cpp
+	"Club.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\club.h
+	<string>
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\colapuntosfecha.cpp
+	"ColaPuntosFecha.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\colapuntosfecha.h
+	"PuntosFecha.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\puntosfecha.h
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\equipo.cpp
+	"Equipo.h"
+	<string>
+	"ListaEquipos.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\equipo.h
+	<string>
+	"ListaJugadores.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\listajugadores.h
+	"Jugador.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\jugador.h
+	<string>
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\listaequipos.h
+	"Equipo.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\jugador.cpp
+	<string>
+	"Jugador.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\listaclubes.cpp
+	"ListaClubes.h"
+
+1497575134 c:\users\aula\desktop\bigdt-master\grandt\listaclubes.h
+	"Club.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\listaequipos.cpp
+	"ListaEquipos.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\listajugadores.cpp
+	"ListaJugadores.h"
+
+1497619531 source:c:\users\aula\desktop\bigdt-master\grandt\main.cpp
+	<wchar.h>
+	<locale.h>
+	<cstdlib>
+	<iostream>
+	<string>
+	<sstream>
+	"stdio.h"
+	"string.h"
+	"conio.h"
+	"windows.h"
+	"Club.h"
+	"ListaClubes.h"
+	"Jugador.h"
+	"ListaJugadores.h"
+	"Equipo.h"
+	"ListaEquipos.h"
+	"ColaPuntosFecha.h"
+	"PuntosFecha.h"
+
+1497575134 source:c:\users\aula\desktop\bigdt-master\grandt\puntosfecha.cpp
+	"PuntosFecha.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\club.cpp
+	"Club.h"
+
+1497402031 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\club.h
+	<string>
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\colapuntosfecha.cpp
+	"ColaPuntosFecha.h"
+
+1497402031 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\colapuntosfecha.h
+	"PuntosFecha.h"
+
+1497402031 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\puntosfecha.h
+
+1497578970 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\equipo.cpp
+	"Equipo.h"
+	<string>
+	"ListaEquipos.h"
+
+1497578970 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\equipo.h
+	<string>
+	"ListaJugadores.h"
+
+1497402031 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listajugadores.h
+	"Jugador.h"
+
+1497412901 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\jugador.h
+	<string>
+
+1497402267 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listaequipos.h
+	"Equipo.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\jugador.cpp
+	<string>
+	"Jugador.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listaclubes.cpp
+	"ListaClubes.h"
+
+1497402031 c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listaclubes.h
+	"Club.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listaequipos.cpp
+	"ListaEquipos.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\listajugadores.cpp
+	"ListaJugadores.h"
+
+1497747002 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\main.cpp
+	<wchar.h>
+	<locale.h>
+	<cstdlib>
+	<iostream>
+	<string>
+	<sstream>
+	"stdio.h"
+	"string.h"
+	"conio.h"
+	"windows.h"
+	"Club.h"
+	"ListaClubes.h"
+	"Jugador.h"
+	"ListaJugadores.h"
+	"Equipo.h"
+	"ListaEquipos.h"
+	"ColaPuntosFecha.h"
+	"PuntosFecha.h"
+
+1497402031 source:c:\users\andresfiloso\desktop\unla 2016\ayed\bigdt\bigdt\grandt\puntosfecha.cpp
+	"PuntosFecha.h"
+

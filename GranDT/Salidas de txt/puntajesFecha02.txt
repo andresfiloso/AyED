@@ -1,0 +1,6 @@
+1 2 Equipo02 31
+2 4 Equipo04 30
+3 6 Equipo06 25
+4 3 Equipo03 23
+5 5 Equipo05 22
+6 1 Equipo01 9

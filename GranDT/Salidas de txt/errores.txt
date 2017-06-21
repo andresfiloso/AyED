@@ -1,0 +1,6 @@
+E400-0 | El jugador 185 se encuentra duplicado.
+E400-0 | El jugador 65 se encuentra duplicado.
+E400-0 | El jugador 140 se encuentra duplicado.
+E400-0 | El jugador 51 se encuentra duplicado.
+E400-0 | El jugador 119 se encuentra duplicado.
+E300-0 | El jugador 300 no existe.

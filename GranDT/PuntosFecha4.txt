@@ -1,0 +1,7 @@
+1;4;Equipo04;Usuario04;26
+2;6;Equipo06;Usuario06;21
+3;2;Equipo02;Usuario02;20
+4;7;Equipo07;Usuario07;4
+5;8;Equipo08;Usuario08;0
+6;9;Equipo09;Usuario09;0
+7;10;Equipo10;Usuario10;0
