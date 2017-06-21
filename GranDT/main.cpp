@@ -55,8 +55,8 @@ bool traerJugadorePorEquipo(ListaE &listaEquipos);
 bool validarJugador(Equipo &equipo, Configuracion config, FILE *errores, Posicion posicion);
 bool validarValorEquipo(Equipo &equipo, Configuracion config, FILE *errores);
 
-// METODOS PARA ORDENAR E IMPRIMIR
-void imprimirOrdenadoEF(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &listaEquipos);
+// METODO DE ORDENAMIENTO E IMPRESION DE ARCHIVOS
+void imprimirOrdenado(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &listaEquipos, ListaJ &listaJugadores, Cola &colaPuntosFecha);
 
 int main()
 {
@@ -120,6 +120,7 @@ int main()
     eliminarLista(listaClubes);
     eliminarLista(listaJugadores);
     eliminarLista(listaEquipos);
+    eliminarCola(colaPuntosFecha);
     return 0;
 }
 
@@ -458,14 +459,17 @@ void cargarPuntosPorJugador(ListaE &listaEquipos, ListaJ &listaJugadores, Cola &
         fechaAux++;
         fclose(pf);
     } //FIN WHILE FECHA
-    imprimirOrdenadoEF(puntosEquipo, ultimaFecha, listaEquipos);
+    imprimirOrdenado(puntosEquipo, ultimaFecha, listaEquipos, listaJugadores, colaPuntosFecha); //LLAMADA A PROCEDIMIENTO PARA IMPRIMIR LO CAPTURADO
 }
 
-void imprimirOrdenadoEF(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &listaEquipos){ //SE IMPRIME Y ORDENA EL PUNTAJE DE CADA EQUIPO EN LA FECHA CORRESPONDIENTE
+void imprimirOrdenado(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &listaEquipos, ListaJ &listaJugadores, Cola &colaPuntosFecha){ //SE IMPRIME Y ORDENA EL PUNTAJE DE CADA EQUIPO EN LA FECHA CORRESPONDIENTE
     int i;
     int j;
     int cursor=0;
     FILE *pf;
+    FILE *pf2;
+    FILE *pf3;
+    PuntosEquipo puntosEquipoTotal[longitud(listaEquipos)];
     PuntosEquipo auxiliar;
     int fechaAux=1;
     string aux,aux2;
@@ -478,7 +482,11 @@ void imprimirOrdenadoEF(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &li
             Sleep(2000);
             exit(0);
         }*/
-        //ACA SE EMPEIZA A ORDENAR LA ESTRUCTURA DE ARRAY
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////CARGAS Y ORDENAMIENTOS////////////////////////////////////
+
+        //SE ORDENA LA ESTRUCTURA DE ARRAY PARA LOS PUNTOS DE LA FECHA POR EQUIPO (YA CARGADA)
         for(i=0 ; i<(longitud(listaEquipos)*ultimaFecha) ; i++){
             for(j=0 ; j<(longitud(listaEquipos)*ultimaFecha)-1 ; j++){
                 if(puntosEquipo[j].puntos < puntosEquipo[j+1].puntos && puntosEquipo[j].fecha == puntosEquipo[j+1].fecha){
@@ -488,29 +496,142 @@ void imprimirOrdenadoEF(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &li
                 }
             }
         }
-
-    //}
-        for(i=0 ; i<(longitud(listaEquipos)*ultimaFecha) ; i++){
-            cout << "idEquipo: " << puntosEquipo[i].idEquipo;
-            cout << " puntos: " << puntosEquipo[i].puntos << endl;
+        //SE CARGA LA ESTRUCTURA DE ARRAY PARA LOS PUNTOS POR EQUIPO EN TODO EL TORNEO (LA FECHA SE IGNORA, =0)
+        for(i=0 ; i<(longitud(listaEquipos)) ; i++){
+            for(j=0 ; j<(longitud(listaEquipos)*ultimaFecha) ; j++){
+            if(j==i){
+            puntosEquipoTotal[i].idEquipo = puntosEquipo[j].idEquipo;
+            puntosEquipoTotal[i].puntos = puntosEquipo[j].puntos;
+            puntosEquipoTotal[i].nomEquipo = puntosEquipo[j].nomEquipo;
+            puntosEquipoTotal[i].nomUsuario = puntosEquipo[j].nomUsuario;
+            puntosEquipoTotal[i].fecha = 0;
+            }
+            if(j>i && puntosEquipo[j].idEquipo == puntosEquipoTotal[i].idEquipo){
+                puntosEquipoTotal[i].puntos+=puntosEquipo[j].puntos; //Se suma el puntaje del resto de fechas
+            }
+            }
         }
-        //EN ESTE BUCLE SE IMPRIMEN LOS ARCHIVOS DE FECHA PREVIAMENTE ORDENADOS POR PUNTOS
+        //SE ORDENA LA ESTRUCTURA DE ARRAY PARA LOS PUNTOS POR EQUIPO EN TODO EL TORNEO:
+        for(i=0 ; i<(longitud(listaEquipos)) ; i++){
+            for(j=0 ; j<(longitud(listaEquipos))-1 ; j++){
+                if(puntosEquipoTotal[j].puntos < puntosEquipoTotal[j+1].puntos && puntosEquipoTotal[j].fecha == puntosEquipoTotal[j+1].fecha){
+                    auxiliar = puntosEquipoTotal[j];
+                    puntosEquipoTotal[j] = puntosEquipoTotal[j+1];
+                    puntosEquipoTotal[j+1] = auxiliar;
+                }
+            }
+        }
+        //SE AGRUPAN TODOS LOS JUGADORES CON SUS PUNTOS TOTALES (FECHA = 0 YA QUE NO IMPORTA)
+        Cola colaOrdenada;
+        crearCola(colaOrdenada);
+        PuntosFecha pfAux;
+        PuntosFecha pfMax;
+        PuntosFecha pfCursor;
+        ptrNodoCola cursorCola = primero(colaPuntosFecha);
+        ptrNodoCola auxCola = primero(colaPuntosFecha);
+        int encontrado = 0;
+        while(cursorCola!=NULL){
+            pfCursor=getDato(cursorCola);
+            while(auxCola !=NULL && encontrado==0){
+                pfAux = getDato(auxCola);
+                if(getIdJugador(pfCursor)==getIdJugador(pfAux) && cursorCola!=auxCola){
+                    cursorCola->ptrdato.puntos += getPuntos(pfAux);
+                    eliminarNodo(colaPuntosFecha, auxCola);
+                    encontrado = 1;
+                }
+                auxCola=siguiente(auxCola);
+            }
+            encontrado=0;
+            auxCola=primero(colaPuntosFecha);
+            cursorCola=siguiente(cursorCola);
+        }
+        ptrNodoCola ptrPruebita = primero(colaPuntosFecha);
+        while(ptrPruebita!=NULL){
+            pfAux = getDato(ptrPruebita);
+            cout << "Jugador: " << getIdJugador(pfAux) << " / Puntos: " << getPuntos(pfAux) << endl;;
+            ptrPruebita = siguiente(ptrPruebita);
+        }
+        //SE ORDENA LA COLA DE JUGADORES POR PUNTAJE
+        setPuntos(pfMax, -100);
+        constructor(pfAux);
+        int flagcontrol;
+        ptrNodoCola ptrControl;
+        ptrNodoCola ptrCola = primero(colaPuntosFecha);
+        ptrNodoCola ptrMax = primero(colaPuntosFecha);
+        while(!colaVacia(colaPuntosFecha)){
+            while(ptrCola!=NULL){
+                pfAux = getDato(ptrCola);
+                if(getPuntos(pfAux)>getPuntos(pfMax)){
+                pfMax = pfAux;
+                ptrMax = ptrCola;
+                    /*while(ptrCola!=ptrMax){
+                        ptrMax=siguiente(ptrMax);
+                    }*/
+                }
+                ptrCola=siguiente(ptrCola);
+            }
+            encolar(colaOrdenada, pfMax);
+            eliminarNodo(colaPuntosFecha, ptrMax);
+            ptrCola = primero(colaPuntosFecha);
+            ptrMax = primero(colaPuntosFecha);
+            setPuntos(pfMax, -100);
+        }
+        /*ptrNodoCola ptrPruebita = primero(colaOrdenada);
+        while(ptrPruebita!=NULL){
+            pfAux = getDato(ptrPruebita);
+            cout << "Jugador: " << getIdJugador(pfAux) << " / Puntos: " << getPuntos(pfAux) << endl;;
+            ptrPruebita = siguiente(ptrPruebita);
+        }*/
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////IMPRESIONES//////////////////////////////////////////
+        //SE IMPRIME EL ARCHIVO DE EQUIPOS EN TODO EL TORNEO ORDENADO POR PUNTOS
+        if ((pf2 = fopen("puntajesTotalesPorEquipo.txt","w")) == NULL){
+                cout << "Error al abrir el archivo puntajesTotalesPorEquipo.txt" << endl;
+                Sleep(2000);
+                exit(0);
+        }
+        for(i=0 ; i<longitud(listaEquipos) ; i++){
+        fprintf(pf2,"%d;%d;%s;%s;%d\n", i+1, puntosEquipoTotal[i].idEquipo, puntosEquipoTotal[i].nomEquipo.c_str(), puntosEquipoTotal[i].nomUsuario.c_str(), puntosEquipoTotal[i].puntos);
+        }
+        fclose(pf2);
+        //SE IMPRIMEN LOS ARCHIVOS DE FECHA PREVIAMENTE ORDENADOS POR PUNTOS
         while (fechaAux <= ultimaFecha){
             aux = static_cast<std::ostringstream*>(&(std::ostringstream() << fechaAux))->str();
-            aux2 = "PuntosFecha"+aux+".txt";
+            aux2 = "puntajesFecha"+aux+".txt";
             const char * nombreArchivo = aux2.c_str();
             if ((pf = fopen(nombreArchivo,"a")) == NULL){
-                cout << "Error al abrir el archivo Fecha" << fechaAux << ".txt" << endl;
+                cout << "Error al abrir el archivo puntajesFecha" << fechaAux << ".txt" << endl;
                 Sleep(2000);
                 exit(0);
             }
             for(i=0 ; i<longitud(listaEquipos) ; i++){
-                cout << "hola";
                 fprintf(pf, "%d;%d;%s;%s;%d\n", i+1, puntosEquipo[cursor].idEquipo, puntosEquipo[cursor].nomEquipo.c_str(), puntosEquipo[cursor].nomUsuario.c_str(), puntosEquipo[cursor].puntos);
                 cursor++;
             }
             fechaAux++;
             fclose(pf);
+        }
+        //SE IMPRIME EL RANKING DE JUGADORES ORDENADO POR PUNTOS
+        if ((pf3 = fopen("puntajesPorJugador.txt","w")) == NULL){
+                cout << "Error al abrir el archivo puntajesTotalesPorEquipo.txt" << endl;
+                Sleep(2000);
+                exit(0);
+        }
+
+        ptrNodoCola ptrCursor = primero(colaOrdenada);
+        PtrNodoListaJ control;
+        Jugador jugador;
+        constructor(jugador);
+        i=1;
+        while(ptrCursor!=NULL){
+            pfAux = getDato(ptrCursor);
+            setIdJugador(jugador, getIdJugador(pfAux));
+            control = localizarDato(listaJugadores, jugador);
+            if(control!=NULL){
+            fprintf(pf3, "%d;%d;%d\n", i, getIdJugador(pfAux), getPuntos(pfAux));
+            i++;
+            }
+            ptrCursor = siguiente(ptrCursor);
         }
 }
 

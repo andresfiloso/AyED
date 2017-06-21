@@ -21,13 +21,12 @@ ptrNodoCola crearNodo (Cola &cola, ptrDato dato){
 
 void eliminarNodo (Cola &cola, ptrNodoCola nodo){
     if (validarCola (cola, nodo)){
-        if (nodo== primero(cola)){
+        if (nodo== primero(cola))
             cola.primero= siguiente (nodo);
-        }
-        else{
+    }
+    else{
         ptrNodoCola predecesor= anterior(cola, nodo);
         predecesor->siguiente= nodo->siguiente;
-        }
     }
 }
 
