@@ -368,7 +368,7 @@ void cargarJugadoresPorEquipo(ListaE &listaEquipos, ListaJ &listaJugadores, FILE
     destructor(equipo);
     fclose(errores);
     fclose(pf);
-
+    cout << "Se cargaron los jugadores por equipo correctamente" << endl;
 }
 
 void cargarPuntosPorJugador(ListaE &listaEquipos, ListaJ &listaJugadores, Cola &colaPuntosFecha, FILE *pf, FILE *errores){
@@ -436,10 +436,10 @@ void cargarPuntosPorJugador(ListaE &listaEquipos, ListaJ &listaJugadores, Cola &
                     if(getPosicion(jugador)==MED) ptrJugador=localizarDato(getListaMED(equipo), jugador);//ES MEDIOCAMPISTA DE ESTE EQUIPO?
                     if(getPosicion(jugador)==DEL) ptrJugador=localizarDato(getListaDEL(equipo), jugador);//ES DELANTERO DE ESTE EQUIPO?
                     if(ptrJugador!=NULL && flagFecha==0){
-                        cout << "Fecha: " << fechaAux << " Jugador: ";
+                        /*cout << "Fecha: " << fechaAux << " Jugador: ";
                         cout << getIdJugador(jugador);
                         cout << " Equipo: ";
-                        cout << puntoEquipo.idEquipo << endl;
+                        cout << puntoEquipo.idEquipo << endl;*/
                         puntoEquipo.puntos += getPuntos(puntosFecha); //SUMO EL PUNTAJE DEL JUGADOR SELECCIONADO EN EL EQUIPO
                     }
                     }
@@ -459,7 +459,8 @@ void cargarPuntosPorJugador(ListaE &listaEquipos, ListaJ &listaJugadores, Cola &
         fechaAux++;
         fclose(pf);
     } //FIN WHILE FECHA
-    imprimirOrdenado(puntosEquipo, ultimaFecha, listaEquipos, listaJugadores, colaPuntosFecha); //LLAMADA A PROCEDIMIENTO PARA IMPRIMIR LO CAPTURADO
+    imprimirOrdenado(puntosEquipo, ultimaFecha, listaEquipos, listaJugadores, colaPuntosFecha); //LLAMADA A PROCEDIMIENTO PARA ORDENAR E IMPRIMIR LO CAPTURADO
+    cout << "Se cargaron los puntos por jugador correctamente" << endl;
 }
 
 void imprimirOrdenado(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &listaEquipos, ListaJ &listaJugadores, Cola &colaPuntosFecha){ //SE IMPRIME Y ORDENA EL PUNTAJE DE CADA EQUIPO EN LA FECHA CORRESPONDIENTE
@@ -546,11 +547,11 @@ void imprimirOrdenado(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &list
             cursorCola=siguiente(cursorCola);
         }
         ptrNodoCola ptrPruebita = primero(colaPuntosFecha);
-        while(ptrPruebita!=NULL){
+        /*while(ptrPruebita!=NULL){
             pfAux = getDato(ptrPruebita);
             cout << "Jugador: " << getIdJugador(pfAux) << " / Puntos: " << getPuntos(pfAux) << endl;;
             ptrPruebita = siguiente(ptrPruebita);
-        }
+        }*/
         //SE ORDENA LA COLA DE JUGADORES POR PUNTAJE
         setPuntos(pfMax, -100);
         constructor(pfAux);
@@ -633,6 +634,14 @@ void imprimirOrdenado(PuntosEquipo puntosEquipo[], int ultimaFecha, ListaE &list
             }
             ptrCursor = siguiente(ptrCursor);
         }
+        fclose(pf3);
+        eliminarCola(colaOrdenada);
+        //Destruyendo TDAs, listas y colas:
+        destructor(pfMax);
+        destructor(pfAux);
+        destructor(pfCursor);
+        destructor(jugador);
+        eliminarCola(colaOrdenada);
 }
 
 // COSAS AUXILIARES PARA MOSTRAR ------------------------------------------------------------------------------
@@ -707,7 +716,7 @@ bool traerJugadorePorEquipo(ListaE &listaEquipos){
 
         ptrE = siguiente(listaEquipos, ptrE);
     }
-
+    //Destruyendo TDAs
     destructor(auxE);
     return true;
 }
