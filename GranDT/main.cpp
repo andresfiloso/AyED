@@ -181,7 +181,7 @@ void cargarJugadores(ListaJ &listaJugadores, ListaC &listaClubes, FILE *pf, FILE
     int xIdJugador, xIdClub;
     float xValor;
     char xNombre[110];
-    char xPosicion[3];
+    char xPosicion[10];
     PtrNodoListaC ptr;
     PtrNodoListaJ ptrJ = primero(listaJugadores);
     if ((errores = fopen("errores.txt", "a")) == NULL){
